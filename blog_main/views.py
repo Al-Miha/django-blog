@@ -1,6 +1,7 @@
 # from django.http import HttpResponse
 from django.shortcuts import render
 from blogs.models import Category,Blog
+from assignments.models import About
 
 def home(request):
     # return HttpResponse('<h2>Homepage</h2>')
@@ -11,10 +12,13 @@ def home(request):
     # print(featured_posts)
     posts=Blog.objects.filter(is_featured=False,status='Published')
     # print(posts)
+    about= About.objects.get(pk=1)
+
 
     context={
         # 'categories':categories,
         'featured_posts':featured_posts,
         'posts':posts,
+        'about':about,
     }
     return render(request,'home.html',context)
