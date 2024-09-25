@@ -2,6 +2,8 @@
 from django.shortcuts import render
 from blogs.models import Category,Blog
 from assignments.models import About
+from .forms import RegistrationForm
+
 
 def home(request):
     # return HttpResponse('<h2>Homepage</h2>')
@@ -24,4 +26,10 @@ def home(request):
     return render(request,'home.html',context)
 
 def register(request):
-    return render(request,'register.html')
+    form = RegistrationForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request,'register.html', context)
