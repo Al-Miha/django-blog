@@ -3,6 +3,8 @@ from blogs.models import Category,Blog
 from django.contrib.auth.decorators import login_required
 
 from . forms import CategoryForm,BlogPostForm
+from django.template.defaultfilters import slugify
+
 
 # Create your views here.
 
@@ -64,6 +66,9 @@ def add_post(request):
         if form.is_valid():
             post = form.save(commit=False) # temporarily saving the form
             post.author = request.user
+            post.save()
+            title = form.cleaned_data['title']
+            post.slug = slugify(title) + '-'+str(post.id)
             post.save()
             return redirect('posts')
         else:
