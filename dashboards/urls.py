@@ -15,6 +15,7 @@ urlpatterns = [
     path('posts/delete/<int:pk>/',views.delete_post,name='delete_post'),
     # users
     path('users/',views.users,name='users'),
+    path('users/add',views.add_user,name='add_user'),
 
 ]
 
